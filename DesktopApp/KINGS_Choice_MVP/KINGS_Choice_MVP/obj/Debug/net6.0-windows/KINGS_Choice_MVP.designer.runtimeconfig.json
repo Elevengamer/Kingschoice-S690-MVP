@@ -12,9 +12,9 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\eleve\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\eleve\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Elevengamer\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Elevengamer\\.nuget\\packages",
+      "D:\\VisualStudio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
