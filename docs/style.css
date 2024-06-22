@@ -85,6 +85,22 @@ h2 {
     inset 0 0 10px 2px var(--Siegfried1);
 }
 
+table, th, td{
+    border: 2px solid var(--Siegfried1);
+    border-collapse: collapse;
+}
+table{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+th,td{
+    text-align: center;
+}
+
+
+
+
 h3{
     background: var(--Hypatia5);
     color: var(--Siegfried1);
