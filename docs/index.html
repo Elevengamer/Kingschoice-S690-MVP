@@ -1,48 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Kings Choice | S690</title>
+    <title>CSV in Tabelle anzeigen</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
-
 <body>
+    <h1>Daten aus CSV</h1>
+    <table id="csv-table">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
 
-    <div class="mainContainer">
-        <h1>Kings Choice | EU S690 | Informations</h1>
+    <script>
+        // Funktion, um CSV zu laden und zu verarbeiten
+        async function loadCSV() {
+            try {
+                // Lade die CSV-Datei
+                const response = await fetch('resources/data.csv');
+                const csvData = await response.text();
 
-        <div>
-            <h2>VIP Kingdome Alliance Infos</h2>
+                // CSV-Inhalt korrekt aufsplitten (Zeilen durchbrechen)
+                const lines = csvData.split(/\r?\n/); // Handhabt Zeilenumbrüche für unterschiedliche Betriebssysteme
 
-            <div class="wrapper">
-                <h3>Alliance Rules</h3>
-                <a href="allianceRules.html" class="button">View Data</a>
-            </div>
+                // Tabelle initialisieren
+                const tableHead = document.querySelector("#csv-table thead");
+                const tableBody = document.querySelector("#csv-table tbody");
 
-            <div class="wrapper">
-                <h3>Alliance MVP System</h3>
-                <a href="allianceMVPs.html" class="button">View Data</a>
-            </div>
+                lines.forEach((line, index) => {
+                    if (line.trim() === "") return; // Leere Zeilen überspringen
 
-            <div class="wrapper">
-                <h3>MVP Ranks</h3>
-                <button>Currently not Available</button>
-                <p>The Overview Page is still in work</p>
-            </div>
-        </div>
+                    const row = document.createElement('tr');
+                    const columns = line.split(',');
 
+                    if (index === 0) {
+                        // Erste Zeile: Header
+                        columns.forEach(column => {
+                            const headerCell = document.createElement('th');
+                            headerCell.textContent = column.trim();
+                            row.appendChild(headerCell);
+                        });
+                        tableHead.appendChild(row);
+                    } else {
+                        // Datenzeilen
+                        columns.forEach(column => {
+                            const dataCell = document.createElement('td');
+                            dataCell.textContent = column.trim();
+                            row.appendChild(dataCell);
+                        });
+                        tableBody.appendChild(row);
+                    }
+                });
+            } catch (error) {
+                console.error("Fehler beim Laden der CSV-Datei:", error);
+            }
+        }
 
-
-    </div>
-
-
-
-
+        // CSV-Daten beim Laden der Seite einlesen
+        window.onload = loadCSV;
+    </script>
 </body>
-
 </html>
-<script>
-    document.getElementById('arB').addEventListener('click',)
-</script>
